@@ -13,6 +13,8 @@ namespace IInkomstenTest
         {
             //Arrange
             Administratie admin = new Administratie();
+            // TODO je gaat ook 10 producten gaan verkopen en uitlenen
+
             //Act
             List<IInkomsten> inkomsten = admin.Overzicht(BTWTarief.Ongespecifeerd);
             //Assert

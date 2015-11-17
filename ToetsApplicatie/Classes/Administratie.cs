@@ -9,6 +9,8 @@ namespace ToetsApplicatie
 {
     public class Administratie
     {
+        // TODO om op polymorfisme te oefenen:
+        // List<IInkopen>
         public List<Verkoop> verkopen { get; set; }
         public List<Verhuur> verhuringen { get; set; }
 
@@ -47,15 +49,22 @@ namespace ToetsApplicatie
                 }
             }
 
-            inkomsten.OrderByDescending(i => i.Tijdstip); //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
+            inkomsten.OrderByDescending(i => i.Tijdstip); 
+            //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
+            // (Merel) Goed om eens te oefenen, maar voor mij is dit ook oke.
 
             return inkomsten;
         }
 
         public List<IInkomsten> Overzicht(BTWTarief tarief)
         {
+
+            // Opgelet: je methode geeft geen inkomsten terug.
+
             List<IInkomsten> inkomsten = new List<IInkomsten>();
-            foreach (Verkoop v in verkopen) //Fout gevonden, om een van der reden is het tarief niet zichtbaar in de hoofdklasse maar wel in de subklasse.
+            foreach (Verkoop v in verkopen) 
+           //Fout gevonden, om een van der reden is het tarief niet zichtbaar 
+           // in de hoofdklasse maar wel in de subklasse.
             {
                 string test = v.BTWTarief.ToString();
                 string testTarief = tarief.ToString();
@@ -87,7 +96,8 @@ namespace ToetsApplicatie
                 List<IInkomsten> inkomsten = Overzicht(tarief);
                 foreach (IInkomsten i in inkomsten)
                 {
-                    sw.WriteLine("Test");
+                    sw.WriteLine(i.ToString());
+                    // TODO tostring methode gebruiken van i.
                 }
             }
         }

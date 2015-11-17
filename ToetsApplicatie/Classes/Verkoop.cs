@@ -11,7 +11,11 @@ namespace ToetsApplicatie
         public int Aantal { get; set; }
         public decimal Bedrag { get; set; }
         public DateTime Tijdstip { get; set; }
-        public BTWTarief BTWTarief { get { return BTWtarief; } }
+
+        // in abstracte klasse moet btw tarief ook abstract
+        // zijn. anders krijg je 2x een property.
+        public abstract BTWTarief BTWTarief { get; }
+
         public decimal Prijs { get { return prijs; } }
 
         private BTWTarief BTWtarief;
