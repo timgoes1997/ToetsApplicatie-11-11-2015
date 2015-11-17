@@ -8,7 +8,7 @@ namespace ToetsApplicatie
 {
     public class Vergaderzaal : Verhuur
     {
-        public BTWTarief BTWTarief { get { return BTWtarief; } }
+        public override BTWTarief BTWTarief { get { return BTWtarief; } }
         public decimal PrijsPerUur { get { return prijsPerUur; } }
 
         private BTWTarief BTWtarief;

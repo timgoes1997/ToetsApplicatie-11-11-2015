@@ -11,7 +11,7 @@ namespace ToetsApplicatie
         public int UrenVerhuurd { get; set; }
         public decimal Bedrag { get; set; }
         public DateTime Tijdstip { get; set; }
-        public BTWTarief BTWTarief { get { return BTWtarief; } }
+        public abstract BTWTarief BTWTarief { get; }
         public decimal PrijsPerUur { get { return prijsPerUur; } }
 
         private BTWTarief BTWtarief;

@@ -8,7 +8,7 @@ namespace ToetsApplicatie
 {
     public class Snack : Verkoop
     {
-        public BTWTarief BTWTarief { get { return BTWtarief; } }
+        public override BTWTarief BTWTarief { get { return BTWtarief; } }
         public decimal Prijs { get { return prijs; } }
 
         private BTWTarief BTWtarief;
