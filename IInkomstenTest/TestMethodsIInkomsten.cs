@@ -9,21 +9,25 @@ namespace IInkomstenTest
     public class TestMethodsIInkomsten
     {
         [TestMethod]
-        public void TestOngespecifeerd()
+        public void myTestData()
         {
-            //Arrange
-            Administratie admin = new Administratie();
-            // TODO je gaat ook 10 producten gaan verkopen en uitlenen
+            // een lijst met IInkomsten om dan te sorteren 
+            // hoe wordt het nu gesorteerd
+        }
+        [TestMethod]
+        public void tweeFeestzalenKunnenVergelekenWorden()
+        {
+            DateTime datum = DateTime.Now;
+            Feestzaal a = new Feestzaal(datum, 1);
+            Feestzaal b = new Feestzaal(datum, 1);
+            Sportzaal c = new Sportzaal(datum, 3);
+            Vergaderzaal d = new Vergaderzaal(datum, 1);
 
-            //Act
-            List<IInkomsten> inkomsten = admin.Overzicht(BTWTarief.Ongespecifeerd);
-            //Assert
-            foreach (IInkomsten i in inkomsten)
-            {
-                //ik weet niet precies wat ik hier moet doen met Assert.AreEqual aangezien BTWTarief i.p.v Ongespecificeerd ook nog Hoog en Laag kan zijn.
-                Assert.IsNotNull(i);
-            }
-
+            Assert.AreEqual(a, b);
+            Assert.AreNotEqual(a, c);
+            Assert.AreNotEqual(d, c);
+            Assert.AreNotEqual(a, d);
+            
         }
     }
 }

@@ -23,6 +23,15 @@ namespace ToetsApplicatie
             this.UrenVerhuurd = urenVerhuurd;
         }
 
+        public override bool Equals(Object a)
+        {
+            if (a is Verhuur)
+            {
+                Verhuur b = (Verhuur)a;
+                return this.Tijdstip.Equals(b.Tijdstip) && this.PrijsPerUur == b.PrijsPerUur && this.UrenVerhuurd == b.UrenVerhuurd && this.GetType().Equals(a.GetType()); ;
+            }
+            return false;
+        }
         public override string ToString()
         {
             return Tijdstip + " | " + UrenVerhuurd;
