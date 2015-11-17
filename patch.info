@@ -20,6 +20,7 @@ index 449b0c6..1b58602 100644
              //Assert
 diff --git a/ToetsApplicatie/Classes/Administratie.cs b/ToetsApplicatie/Classes/Administratie.cs
 index 6d2fa6a..52368d4 100644
+--- a/ToetsApplicatie/Classes/Administratie.cs
 +++ b/ToetsApplicatie/Classes/Administratie.cs
 @@ -9,6 +9,8 @@ namespace ToetsApplicatie
  {
