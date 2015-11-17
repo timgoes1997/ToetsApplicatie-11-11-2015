@@ -29,5 +29,21 @@ namespace IInkomstenTest
             Assert.AreNotEqual(a, d);
             
         }
+
+        [TestMethod]
+        public void TweeLijstenVanVerhuurVergelijken()
+        {
+            DateTime datum = DateTime.Now;
+            List<Verhuur> lijsta = new List<Verhuur>();
+            lijsta.Add(new Feestzaal(datum, 1));
+            lijsta.Add(new Sportzaal(datum, 1));
+            lijsta.Add(new Vergaderzaal(datum, 1));
+            List<Verhuur> lijstb = new List<Verhuur>();
+            lijstb.AddRange(lijsta);
+
+            CollectionAssert.Equals(lijsta, lijstb);
+            lijsta.Add(new Sportzaal(datum, 2));
+            CollectionAssert.AreNotEqual(lijsta, lijstb);
+        }
     }
 }
