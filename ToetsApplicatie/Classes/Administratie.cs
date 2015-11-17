@@ -49,7 +49,7 @@ namespace ToetsApplicatie
                 }
             }
 
-            inkomsten.OrderByDescending(i => i.Tijdstip); 
+            inkomsten.OrderByDescending(i => i.Tijdstip).ToList(); 
             //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
             // (Merel) Goed om eens te oefenen, maar voor mij is dit ook oke.
 
@@ -83,7 +83,7 @@ namespace ToetsApplicatie
                 }
             }
 
-            inkomsten.OrderByDescending(i => i.Tijdstip); //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
+            inkomsten.OrderByDescending(i => i.Tijdstip).ToList(); //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
 
             return inkomsten;
         }
