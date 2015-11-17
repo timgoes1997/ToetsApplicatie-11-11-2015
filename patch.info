@@ -1,0 +1,84 @@
+commit 8f9a0db6f4d2b6ee07a568b320ffd5cac07c1ecc
+Author: Merel Veracx <m.veracx@fontys.nl>
+Date:   Wed Nov 11 14:58:55 2015 +0100
+
+    * overerving van BTWTarief in orde maken
+    * Junit test arrange heeft producten nodig.
+
+diff --git a/IInkomstenTest/TestMethodsIInkomsten.cs b/IInkomstenTest/TestMethodsIInkomsten.cs
+index 449b0c6..1b58602 100644
+--- a/IInkomstenTest/TestMethodsIInkomsten.cs
++++ b/IInkomstenTest/TestMethodsIInkomsten.cs
+@@ -13,6 +13,8 @@ public void TestOngespecifeerd()
+         {
+             //Arrange
+             Administratie admin = new Administratie();
++            // TODO je gaat ook 10 producten gaan verkopen en uitlenen
++
+             //Act
+             List<IInkomsten> inkomsten = admin.Overzicht(BTWTarief.Ongespecifeerd);
+             //Assert
+diff --git a/ToetsApplicatie/Classes/Administratie.cs b/ToetsApplicatie/Classes/Administratie.cs
+index 6d2fa6a..52368d4 100644
++++ b/ToetsApplicatie/Classes/Administratie.cs
+@@ -9,6 +9,8 @@ namespace ToetsApplicatie
+ {
+     public class Administratie
+     {
++        // TODO om op polymorfisme te oefenen:
++        // List<IInkopen>
+         public List<Verkoop> verkopen { get; set; }
+         public List<Verhuur> verhuringen { get; set; }
+ 
+@@ -47,15 +49,22 @@ public List<IInkomsten> Overzicht(DateTime van, DateTime tot)
+                 }
+             }
+ 
+-            inkomsten.OrderByDescending(i => i.Tijdstip); //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
++            inkomsten.OrderByDescending(i => i.Tijdstip); 
++            //gebruik maken van Icomparable in verhuur en verkoop i.p.v lambda
++            // (Merel) Goed om eens te oefenen, maar voor mij is dit ook oke.
+ 
+             return inkomsten;
+         }
+ 
+         public List<IInkomsten> Overzicht(BTWTarief tarief)
+         {
++
++            // Opgelet: je methode geeft geen inkomsten terug.
++
+             List<IInkomsten> inkomsten = new List<IInkomsten>();
+-            foreach (Verkoop v in verkopen) //Fout gevonden, om een van der reden is het tarief niet zichtbaar in de hoofdklasse maar wel in de subklasse.
++            foreach (Verkoop v in verkopen) 
++           //Fout gevonden, om een van der reden is het tarief niet zichtbaar 
++           // in de hoofdklasse maar wel in de subklasse.
+             {
+                 string test = v.BTWTarief.ToString();
+                 string testTarief = tarief.ToString();
+@@ -87,7 +96,8 @@ public void Exporteer(string path, BTWTarief tarief)
+                 List<IInkomsten> inkomsten = Overzicht(tarief);
+                 foreach (IInkomsten i in inkomsten)
+                 {
+-                    sw.WriteLine("Test");
++                    sw.WriteLine(i.ToString());
++                    // TODO tostring methode gebruiken van i.
+                 }
+             }
+         }
+diff --git a/ToetsApplicatie/Classes/Verkoop.cs b/ToetsApplicatie/Classes/Verkoop.cs
+index ac4d32f..b5ceb5c 100644
+--- a/ToetsApplicatie/Classes/Verkoop.cs
++++ b/ToetsApplicatie/Classes/Verkoop.cs
+@@ -11,7 +11,11 @@ public abstract class Verkoop : IInkomsten
+         public int Aantal { get; set; }
+         public decimal Bedrag { get; set; }
+         public DateTime Tijdstip { get; set; }
+-        public BTWTarief BTWTarief { get { return BTWtarief; } }
++
++        // in abstracte klasse moet btw tarief ook abstract
++        // zijn. anders krijg je 2x een property.
++        public abstract BTWTarief BTWTarief { get; }
++
+         public decimal Prijs { get { return prijs; } }
+ 
+         private BTWTarief BTWtarief;
